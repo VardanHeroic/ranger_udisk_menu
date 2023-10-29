@@ -25,6 +25,7 @@ class ChoosePartition:
     def __init__(self):
         self.screen = curses.initscr()
         curses.start_color()
+        curses.use_default_colors()
         curses.curs_set(0)
         curses.noecho()
         curses.cbreak()
@@ -171,12 +172,12 @@ class ChoosePartition:
                         curses.ascii.BEL, curses.ascii.NL):
             self._select_print(x)
             x = self.screen.getch()
-            if x in (ord('j'), curses.ascii.SO, curses.KEY_DOWN):
+            if x in (ord('k'), curses.ascii.SO, curses.KEY_DOWN):
                 # down
                 self.selected_partn += 1
                 if self.selected_partn > self.partn:
                     self.selected_partn = self.partn
-            elif x in (ord('k'), curses.ascii.DLE, curses.KEY_UP):
+            elif x in (ord('l'), curses.ascii.DLE, curses.KEY_UP):
                 # up
                 self.selected_partn -= 1
                 if self.selected_partn <= 0:
